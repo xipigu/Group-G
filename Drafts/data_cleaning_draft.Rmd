@@ -1,8 +1,10 @@
 ---
-title: "Data_cleaning_draft"
-author: "TeamG"
-date: "26 September 2017"
-output: html_document
+title: "What makes a Hollywood movie popular?"
+author: "Team G - Joanna Andari, Karim Awad, Jiye Ren, Nirbhay Sharma, Qiuyue Zhang, Xiaoyan Zhou"
+date: "8th October 2017"
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
