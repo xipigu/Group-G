@@ -4,6 +4,7 @@ library(dplyr)
 library(readr)
 library(tidyr)
 library(magrittr)
+library(stringr)
 
 old_data <- read.csv("./Drafts/movie_metadata.csv")
 head(old_data)
@@ -32,22 +33,21 @@ RB_data <- mutate(.data = genre_filter, return = gross / budget)
 RB_data$return <- round(RB_data$return, 2)
 head(RB_data)
 RB_data$movie_title <- gsub("Â","",RB_data$movie_title)
+RB_data$movie_title = substr(RB_data$movie_title,1,nchar(RB_data$movie_title)-1)
 head(RB_data)
 
 ##Introducing flags for genres
 length(RB_data$movie_title)
-for (i in (1:699)){
-  if ("The Dark Knight Rises " == RB_data$movie_title[i]){
-    print ("True")
-  }else{
-    print ("False")
-  }
-}
 row <- grep(RB_data$movie_title,"The Dark Knight ")
 as.character(RB_data$movie_title[1]) == as.character("The Dark Knight Rises ")
 head(RB_data)
 typeof(RB_data$genre1)
 typeof(RB_data$movie_title)
+RB_data$movie_title[1] == as.character("The Dark Knight Rises ")
+
+#to search for a string in any column
+str_detect(RB_data$movie_title[2],"John Carter")
+
 ##Establishing separate datasets for time periods
 
 data11_15 <- filter(.data = RB_data, title_year < 2016)
