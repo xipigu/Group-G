@@ -36,18 +36,11 @@ head(RB_data)
 
 ##Introducing flags for genres
 length(RB_data$movie_title)
-for (i in (1:699)){
-  if ("The Dark Knight Rises " == RB_data$movie_title[i]){
-    print ("True")
-  }else{
-    print ("False")
-  }
-}
-row <- grep(RB_data$movie_title,"The Dark Knight ")
-as.character(RB_data$movie_title[1]) == as.character("The Dark Knight Rises ")
-head(RB_data)
-typeof(RB_data$genre1)
-typeof(RB_data$movie_title)
+RB_data$genre1 <- gsub("NA","0",RB_data$genre1)
+RB_data$actiondummy <- as.numeric( RB_data$genre1 == "Action" | RB_data$genre2 == "Action" | RB_data$genre3 == "Action" | RB_data$genre4 == "Action" | RB_data$genre5 == "Action" | RB_data$genre6 == "Action" | RB_data$genre7 == "Action")
+
+
+
 ##Establishing separate datasets for time periods
 
 data11_15 <- filter(.data = RB_data, title_year < 2016)
