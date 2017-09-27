@@ -67,9 +67,6 @@ RB_data$dramadummy[is.na(RB_data$dramadummy)] <- 0
 RB_data$familydummy <- as.numeric( RB_data$genre1 == "Family" | RB_data$genre2 == "Family" | RB_data$genre3 == "Family" | RB_data$genre4 == "Family" | RB_data$genre5 == "Family" | RB_data$genre6 == "Family" | RB_data$genre7 == "Family")
 RB_data$familydummy[is.na(RB_data$familydummy)] <- 0
 
-RB_data$familydummy <- as.numeric( RB_data$genre1 == "Family" | RB_data$genre2 == "Family" | RB_data$genre3 == "Family" | RB_data$genre4 == "Family" | RB_data$genre5 == "Family" | RB_data$genre6 == "Family" | RB_data$genre7 == "Family")
-RB_data$familydummy[is.na(RB_data$familydummy)] <- 0
-
 RB_data$fantasydummy <- as.numeric( RB_data$genre1 == "Fantasy" | RB_data$genre2 == "Fantasy" | RB_data$genre3 == "Fantasy" | RB_data$genre4 == "Fantasy" | RB_data$genre5 == "Fantasy" | RB_data$genre6 == "Fantasy" | RB_data$genre7 == "Fantasy")
 RB_data$fantasydummy[is.na(RB_data$fantasydummy)] <- 0
 
@@ -79,11 +76,35 @@ RB_data$historydummy[is.na(RB_data$historydummy)] <- 0
 RB_data$horrordummy <- as.numeric( RB_data$genre1 == "Horror" | RB_data$genre2 == "Horror" | RB_data$genre3 == "Horror" | RB_data$genre4 == "Horror" | RB_data$genre5 == "Horror" | RB_data$genre6 == "Horror" | RB_data$genre7 == "Horror")
 RB_data$horrordummy[is.na(RB_data$horrordummy)] <- 0
 
-RB_data$musicaldummy <- as.numeric( RB_data$genre1 == "Horror" | RB_data$genre2 == "Horror" | RB_data$genre3 == "Horror" | RB_data$genre4 == "Horror" | RB_data$genre5 == "Horror" | RB_data$genre6 == "Horror" | RB_data$genre7 == "Horror")
+RB_data$musicaldummy <- as.numeric( RB_data$genre1 == "Musical" | RB_data$genre2 == "Musical" | RB_data$genre3 == "Musical" | RB_data$genre4 == "Musical" | RB_data$genre5 == "Musical" | RB_data$genre6 == "Musical" | RB_data$genre7 == "Musical")
 RB_data$musicaldummy[is.na(RB_data$musicaldummy)] <- 0
 
+RB_data$mysterydummy <- as.numeric( RB_data$genre1 == "Mystery" | RB_data$genre2 == "Mystery" | RB_data$genre3 == "Mystery" | RB_data$genre4 == "Mystery" | RB_data$genre5 == "Mystery" | RB_data$genre6 == "Mystery" | RB_data$genre7 == "Mystery")
+RB_data$mysterydummy[is.na(RB_data$mysterydummy)] <- 0
 
-"Fantasy", "History", "Horror", "Musical", "Mystery", "News", "Romance", "Sci-Fi", "Sport", "Thriller", "War", "Western"
+RB_data$newsdummy <- as.numeric( RB_data$genre1 == "News" | RB_data$genre2 == "News" | RB_data$genre3 == "News" | RB_data$genre4 == "News" | RB_data$genre5 == "News" | RB_data$genre6 == "News" | RB_data$genre7 == "News")
+RB_data$newsdummy[is.na(RB_data$newsdummy)] <- 0
+
+RB_data$romancedummy <- as.numeric( RB_data$genre1 == "Romance" | RB_data$genre2 == "Romance" | RB_data$genre3 == "Romance" | RB_data$genre4 == "Romance" | RB_data$genre5 == "Romance" | RB_data$genre6 == "Romance" | RB_data$genre7 == "Romance")
+RB_data$romancedummy[is.na(RB_data$romancedummy)] <- 0
+
+RB_data$scifidummy <- as.numeric( RB_data$genre1 == "Sci-Fi" | RB_data$genre2 == "Sci-Fi" | RB_data$genre3 == "Sci-Fi" | RB_data$genre4 == "Sci-Fi" | RB_data$genre5 == "Sci-Fi" | RB_data$genre6 == "Sci-Fi" | RB_data$genre7 == "Sci-Fi")
+RB_data$scifidummy[is.na(RB_data$scifidummy)] <- 0
+
+RB_data$sportdummy <- as.numeric( RB_data$genre1 == "Sport" | RB_data$genre2 == "Sport" | RB_data$genre3 == "Sport" | RB_data$genre4 == "Sport" | RB_data$genre5 == "Sport" | RB_data$genre6 == "Sport" | RB_data$genre7 == "Sport")
+RB_data$sportdummy[is.na(RB_data$sportdummy)] <- 0
+
+RB_data$thrillerdummy <- as.numeric( RB_data$genre1 == "Thriller" | RB_data$genre2 == "Thriller" | RB_data$genre3 == "Thriller" | RB_data$genre4 == "Thriller" | RB_data$genre5 == "Thriller" | RB_data$genre6 == "Thriller" | RB_data$genre7 == "Thriller")
+RB_data$thrillerdummy[is.na(RB_data$thrillerdummy)] <- 0
+
+RB_data$wardummy <- as.numeric( RB_data$genre1 == "War" | RB_data$genre2 == "War" | RB_data$genre3 == "War" | RB_data$genre4 == "War" | RB_data$genre5 == "War" | RB_data$genre6 == "War" | RB_data$genre7 == "War")
+RB_data$wardummy[is.na(RB_data$wardummy)] <- 0
+
+RB_data$westerndummy <- as.numeric( RB_data$genre1 == "Western" | RB_data$genre2 == "Western" | RB_data$genre3 == "Western" | RB_data$genre4 == "Western" | RB_data$genre5 == "Western" | RB_data$genre6 == "Western" | RB_data$genre7 == "Western")
+RB_data$westerndummy[is.na(RB_data$westerndummy)] <- 0
+
+sum(RB_data$actiondummy)
+
 
 ##To search for items within the Movie Title column
 row <- grep(RB_data$movie_title,"The Dark Knight ")
