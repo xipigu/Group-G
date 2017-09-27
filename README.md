@@ -7,6 +7,7 @@ git commit -m "first commit"
 git remote add origin https://github.com/xipigu/Group-G.git
 git push -u origin master
 
-
-hello——world -xiaoyan
-hello-world -xiaoyan
+Hello_world - Karim
+Hello_world - Nirbhay
+Hello_world - Joanna
+Can I join- Xiaoyan
