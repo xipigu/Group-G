@@ -14,8 +14,6 @@ select_data <- select(filter_data, movie_title, title_year, director_name, durat
 select_data_filter <- filter(select_data, title_year >= 2011, gross !=0 | gross != "NA" | gross != "", imdb_score != 0 | imdb_score != "NA" | imdb_score != "",budget != 0 | budget != "NA" | budget != "", movie_facebook_likes != 0 | movie_facebook_likes != "NA" | movie_facebook_likes != "")
 #head(select_data_filter)
 
-
-
 ##Genre conversion
 
 typeof(select_data_filter$genres)
@@ -32,3 +30,10 @@ genre_filter <- select_data_filter %>% separate(genres, into=genre_types,sep = "
 RB_data <- mutate(.data = genre_filter, return = gross / budget)
 RB_data$return <- round(RB_data$return, 2)
 #head(RB_data)
+
+##Establishing separate datasets for time periods
+
+data11_15 <- filter(.data = RB_data, title_year < 2016)
+#head(data11_15)
+data16 <- filter(.data = RB_data,title_year == 2016)
+head(data16)
