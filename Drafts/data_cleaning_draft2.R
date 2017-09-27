@@ -8,5 +8,11 @@ head(select_data)
 select_data_filter <- filter(select_data, title_year >= 2011, gross !=0 | gross != "NA" | gross != "", imdb_score != 0 | imdb_score != "NA" | imdb_score != "",budget != 0 | budget != "NA" | budget != "", movie_facebook_likes != 0 | movie_facebook_likes != "NA" | movie_facebook_likes != "")
 head(select_data_filter)
 library(tidyr)
+typeof(select_data_filter$genres)
+toString(select_data_filter$genres)
+str(select_data_filter)
+genre_names <- c("Action","Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "History", "Horror", "Musical", "Mystery", "News", "Romance", "Sci-Fi", "Sport", "Thriller", "War", "Western")
+genre_types <- c("genre1", "genre2","genre3", "genre4", "genre5", "genre6", "genre7")
 
-
+genre_filter <- select_data_filter %>% separate(genres, into=genre_types,sep = "\\|")
+head(genre_filter)
