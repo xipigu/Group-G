@@ -16,3 +16,5 @@ genre_types <- c("genre1", "genre2","genre3", "genre4", "genre5", "genre6", "gen
 
 genre_filter <- select_data_filter %>% separate(genres, into=genre_types,sep = "\\|")
 head(genre_filter)
+
+
