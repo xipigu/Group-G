@@ -133,3 +133,16 @@ data11_15 <- filter(.data = RB_data, title_year < 2016)
 data16 <- filter(.data = RB_data,title_year == 2016)
 #head(data16)
 print(data11_15$movie_facebook_likes)
+
+#cleaning awards data 
+awards_data <- read.csv("./Drafts/awards_metadata.csv", stringsAsFactors = FALSE)
+awards_data <- filter(awards_data, Winner!="NA")
+awards_data <- select(awards_data, Year, Award, Name, Film)
+movie_wins <- filter(awards_data, Award=="Best Picture" | Award=="Best Motion Picture")
+movie_wins <- count(movie_wins, Name)
+actor_wins <- filter(awards_data, Award=="Actor" | Award=="Actress" | Award=="Actor in a Leading Role" | Award=="Actress in a Leading Role" | Award=="Actor in a Supporting Role" | Award=="Actress in a Supporting Role")
+actor_wins <- count(actor_wins, Name)
+director_wins <- filter(awards_data, Award=="Directing")
+director_wins$Name = director_wins$Film
+director_wins <- count(director_wins, Name)
+award_wins <- rbind(actor_wins,director_wins,movie_wins)
