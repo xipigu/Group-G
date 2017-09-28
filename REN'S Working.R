@@ -13,6 +13,8 @@ head(data16)
 #All editing start here
 #To measure popularity: consider variables such as- x=imdb score,y=return, 
 library(ggplot2)
+
+
 #scater plot
 # scatter plot of facebook_likes vs return, 
   ggplot(data11_15, aes(x=movie_facebook_likes, y=return ))+ 
@@ -79,6 +81,8 @@ ggplot(data11_15, aes(x=movie_facebook_likes))+
   geom_density()
 ########
 ######
+
+
 
 
 
