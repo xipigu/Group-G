@@ -6,7 +6,7 @@ library(tidyr)
 library(magrittr)
 library(stringr)
 
-old_data <- read.csv("./Drafts/movie_metadata.csv")
+old_data <- read.csv("./Drafts/movie_metadata.csv", stringsAsFactors = FALSE)
 head(old_data)
 filter_data <- filter(old_data, country=="USA", language=="English")
 #head(filter_data)
@@ -116,8 +116,14 @@ RB_data$movie_title[1] == as.character("The Dark Knight Rises ")
 
 
 #to search for a string in any column
-str_detect(RB_data$movie_title[2],"John Carter")
+str_detect(RB_data$movie_title,"John Carter")
 
+for (i in (1:length(RB_data))){
+  RB_data$director_occurence[i] = length(which((str_detect(RB_data$director_name,RB_data$director_name[i]))==TRUE))
+  RB_data$actor1_occurence[i] = length(which((str_detect(cbind(RB_data$actor_1_name,RB_data$actor_2_nameRB_data$actor_3_name),RB_data$actor_1_name[i]))==TRUE))
+  RB_data$actor2_occurence[i] = length(which((str_detect(cbind(RB_data$actor_1_name,RB_data$actor_2_nameRB_data$actor_3_name),RB_data$actor_2_name[i]))==TRUE))
+  RB_data$actor3_occurence[i] = length(which((str_detect(cbind(RB_data$actor_1_name,RB_data$actor_2_nameRB_data$actor_3_name),RB_data$actor_3_name[i]))==TRUE))
+}
 
 ##Establishing separate datasets for time periods
 
