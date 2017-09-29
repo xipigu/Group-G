@@ -3,6 +3,7 @@ library(readr)
 library(tidyr)
 library(magrittr)
 
+<<<<<<< HEAD
 old_data <- read.csv("C:/Users/Ryan/Desktop/movie_metadata.csv")
 #head(old_data)
 filter_data <- filter(old_data, country=="USA", language=="English")
@@ -30,6 +31,9 @@ RB_data$return <- round(RB_data$return, 2)
 #head(RB_data)
 
 ##Establishing separate datasets for time periods
+=======
+
+>>>>>>> 4723d910e6779baf6a9ee0cba1689476074b5f5f
 
 data11_15 <- filter(.data = RB_data, title_year < 2016)
 #head(data11_15)
@@ -39,6 +43,7 @@ head(data16)
 #All editing start here
 #To measure popularity: consider variables such as- x=imdb score,y=return, 
 library(ggplot2)
+<<<<<<< HEAD
 #IMDB Rating vs Revenue
 ggplot(RB_data, aes(x=imdb_score, y=gross ))+
   geom_point()+
@@ -94,5 +99,93 @@ ggplot(RB_data, aes(x=award, y= imdb_score)) +geom_point()+geom_smooth()
 
 #4. Award vs revenue rating
 ggplot(RB_data, aes(x= award, y=gross)) + geom_point()+geom_smooth()
+=======
+
+
+#scater plot
+# scatter plot of facebook_likes vs return, 
+  ggplot(data11_15, aes(x=movie_facebook_likes, y=return ))+ 
+  geom_point()+
+  geom_smooth()+
+  ylim(0,8) 
+
+##gross and return vs IMDB_SCORE-------anomoly is justin bieber, weak positive correlation
+ggplot(data11_15, aes(x=imdb_score, y=gross ))+ 
+  geom_point()+
+  geom_smooth()
+ 
+##scatter plot of imdb_score vs return, scale from 0-4, weak positive correlation
+ggplot(data11_15, aes(x=imdb_score, y=return ))+ 
+  geom_point()+
+  geom_smooth()+
+  ylim(0,4)
+
+#sectter plot of imdb_score vs return, scale from 4-9, weak positive correlation
+ggplot(data11_15, aes(x=imdb_score, y=return ))+ 
+  geom_point()+
+  geom_smooth()+
+  ylim(4,9)
+
+#imdb_score vs budget, relatively strong positive correlation
+ggplot(data11_15, aes(x=imdb_score, y=budget))+  
+  geom_point()+
+  geom_smooth()+
+  ylim(0,3e+08)
+######
+###
+
+
+
+##################################################
+#boxplot 
+# boxplot of imdb vs return with return scale from 0 to 8 
+ggplot(data11_15, aes(x=imdb_score, y=return ))+ geom_boxplot(col=return)+
+  ylim(0,8)
+
+# boxplot of imdb vs return with return scale from 4 to 8 
+
+ggplot(data11_15, aes(x=imdb_score, y=return ))+
+  geom_boxplot()+
+  ylim(4,8)
+
+# boxplot of imdb vs gross
+ggplot(data11_15, aes(x=imdb_score, y=gross ))+
+  geom_boxplot()
+
+##########
+######
+
+
+##Density plot  
+#density plot showing the distribution of imdb_score, negatively skewed and most score centers on score 6 to 7  
+ggplot(data11_15, aes(x=imdb_score))+  
+  geom_density()
+
+#density plot showing the distribution of facebook, centers on the left, can be excluded from further analysis.
+ggplot(data11_15, aes(x=movie_facebook_likes))+  
+  geom_density()
+data11_15$movie_facebook_likes
+########
+######
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> 4723d910e6779baf6a9ee0cba1689476074b5f5f
 
 
