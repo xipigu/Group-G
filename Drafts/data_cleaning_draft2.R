@@ -1,12 +1,12 @@
 ##Initial cleaning
 
-library(dplyr)
-library(readr)
-library(tidyr)
-library(magrittr)
-library(stringr)
+require(dplyr)
+require(readr)
+require(tidyr)
+require(magrittr)
+require(stringr)
 
-old_data <- read.csv("./Drafts/movie_metadata.csv", stringsAsFactors = FALSE)
+old_data <- read.csv("~/IC/imdb-5000-movie-dataset/movie_metadata.csv", stringsAsFactors = FALSE)
 head(old_data)
 filter_data <- filter(old_data, country=="USA", language=="English")
 #head(filter_data)
@@ -146,3 +146,4 @@ director_wins <- filter(awards_data, Award=="Directing")
 director_wins$Name = director_wins$Film
 director_wins <- count(director_wins, Name)
 award_wins <- rbind(actor_wins,director_wins,movie_wins)
+
