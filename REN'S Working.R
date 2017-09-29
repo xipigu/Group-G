@@ -58,20 +58,28 @@ ggplot(data11_15, aes(x=movie_facebook_likes, y=dubget ))+
 ##################################################
 #boxplot 
 # boxplot of imdb vs return with return scale from 0 to 8 
+<<<<<<< HEAD
 ggplot(data11_15, aes(x=imdb_score, y=return ))+
   geom_boxplot()+
   geom_smooth()+
+=======
+ggplot(data11_15, aes(x=imdb_score, y=return ))+ geom_boxplot(col=return)+
+>>>>>>> 4723d910e6779baf6a9ee0cba1689476074b5f5f
   ylim(0,8)
 
 # boxplot of imdb vs return with return scale from 4 to 8 
 
 ggplot(data11_15, aes(x=imdb_score, y=return ))+
+<<<<<<< HEAD
   geom_smooth()+
+=======
+>>>>>>> 4723d910e6779baf6a9ee0cba1689476074b5f5f
   geom_boxplot()+
   ylim(4,8)
 
 # boxplot of imdb vs gross
 ggplot(data11_15, aes(x=imdb_score, y=gross ))+
+<<<<<<< HEAD
   geom_boxplot()+
   geom_smooth()
 
@@ -80,6 +88,9 @@ ggplot(data11_15, aes(x=imdb_score, y=gross ))+
 ggplot(data11_15, aes(x=imdb_score, y=budget ))+
   geom_boxplot()+
   geom_smooth()
+=======
+  geom_boxplot()
+>>>>>>> 4723d910e6779baf6a9ee0cba1689476074b5f5f
 
 ##########
 ######
@@ -93,6 +104,7 @@ ggplot(data11_15, aes(x=imdb_score))+
 #density plot showing the distribution of facebook, centers on the left, can be excluded from further analysis.
 ggplot(data11_15, aes(x=movie_facebook_likes))+  
   geom_density()
+data11_15$movie_facebook_likes
 ########
 ######
 
