@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 
-old_data <- read.csv("/Drafts/movie_metadata.csv")
-=======
 ##Initial cleaning
 
 library(dplyr)
@@ -11,24 +8,14 @@ library(magrittr)
 library(stringr)
 
 old_data <- read.csv("./Drafts/movie_metadata.csv", stringsAsFactors = FALSE)
-head(old_data)
 filter_data <- filter(old_data, country=="USA", language=="English")
-head(filter_data)
 select_data <- select(filter_data, movie_title, title_year, director_name, duration, gross, genres, num_voted_users, num_user_for_reviews, budget, imdb_score, movie_facebook_likes, actor_1_name, actor_2_name, actor_3_name)
-
-head(select_data)
-select_data_filter <- filter(select_data, title_year >= 2011, gross !=0 | gross != "NA" | gross != "", imdb_score != 0 | imdb_score != "NA" | imdb_score != "",budget != 0 | budget != "NA" | budget != "", movie_facebook_likes != 0 | movie_facebook_likes != "NA" | movie_facebook_likes != "")
-head(select_data_filter)
-library(tidyr)
-
-#head(select_data)
 select_data_filter <- filter(select_data, title_year >= 2011, gross !=0, gross != "NA", gross != "", imdb_score != 0, imdb_score != "NA", imdb_score != "", budget != 0, budget != "NA", budget != "", movie_facebook_likes != 0, movie_facebook_likes != "NA", movie_facebook_likes != "")
 
-#head(select_data_filter)
+head(select_data_filter)
 
 ##Genre conversion
 
->>>>>>> 4723d910e6779baf6a9ee0cba1689476074b5f5f
 typeof(select_data_filter$genres)
 toString(select_data_filter$genres)
 str(select_data_filter)
@@ -38,9 +25,6 @@ genre_types <- c("genre1", "genre2","genre3", "genre4", "genre5", "genre6", "gen
 genre_filter <- select_data_filter %>% separate(genres, into=genre_types,sep = "\\|")
 head(genre_filter)
 
-<<<<<<< HEAD
-
-=======
 
 ##Establishing a Gross Revenue / Budget variable and cleaning up movie titles
 
@@ -126,7 +110,7 @@ as.character(RB_data$movie_title[1]) == as.character("The Dark Knight Rises ")
 head(RB_data)
 typeof(RB_data$genre1)
 typeof(RB_data$movie_title)
-RB_data$movie_title[1] == as.character("The Dark Knight Rises ")
+RB_data$movie_title[1] == as.character("The Dark Knight Rises")
 
 
 #to search for a string in any column
@@ -163,4 +147,4 @@ director_wins <- filter(awards_data, Award=="Directing")
 director_wins$Name = director_wins$Film
 director_wins <- count(director_wins, Name)
 award_wins <- rbind(actor_wins,director_wins,movie_wins)
->>>>>>> 4723d910e6779baf6a9ee0cba1689476074b5f5f
+head(data11_15)
