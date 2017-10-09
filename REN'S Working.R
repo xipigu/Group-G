@@ -3,10 +3,6 @@ library(readr)
 library(tidyr)
 library(magrittr)
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> a87b88e378b2512ede85707cbd605b3f4dd471ad
 old_data <- read.csv("C:/Users/Ryan/Desktop/movie_metadata.csv")
 #head(old_data)
 filter_data <- filter(old_data, country=="USA", language=="English")
@@ -34,12 +30,7 @@ RB_data$return <- round(RB_data$return, 2)
 #head(RB_data)
 
 ##Establishing separate datasets for time periods
-<<<<<<< HEAD
-=======
-=======
 
->>>>>>> 4723d910e6779baf6a9ee0cba1689476074b5f5f
->>>>>>> a87b88e378b2512ede85707cbd605b3f4dd471ad
 
 data11_15 <- filter(.data = RB_data, title_year < 2016)
 #head(data11_15)
@@ -71,7 +62,7 @@ head(total_wins)
 #All editing start here
 #To measure popularity: consider variables such as- x=imdb score,y=return, 
 library(ggplot2)
-<<<<<<< HEAD
+
 #gross and return vs IMDB_SCORE
 
 #correlation test=0.339
@@ -81,8 +72,7 @@ print(imdb_vs_gross)
 ggplot(RB_data, aes(x=imdb_score, y=gross ))+ 
   geom_point()+
   geom_smooth()
-=======
-<<<<<<< HEAD
+
 #IMDB Rating vs Revenue
 ggplot(RB_data, aes(x=imdb_score, y=gross ))+
   geom_point()+
@@ -138,8 +128,6 @@ ggplot(RB_data, aes(x=award, y= imdb_score)) +geom_point()+geom_smooth()
 
 #4. Award vs revenue rating
 ggplot(RB_data, aes(x= award, y=gross)) + geom_point()+geom_smooth()
-=======
->>>>>>> a87b88e378b2512ede85707cbd605b3f4dd471ad
 
 #correlation test=-0.l08
 imdb_score_vs_return <- cor(RB_data$imdb_score, RB_data$return)
@@ -305,75 +293,11 @@ corvariables1 <- data.frame(ret=data11_15$return,
                             
                             bud=data11_15$budget)
 
-corvariables3 <- as.matrix(as.data.frame(corvariables2))
+corvariables3 <- as.matrix(as.data.frame(corvariables1))
 
-head(corvariables3)
 
 cor(corvariables3)
 
-cor(corvariables3$P)
-
-
-
-install.packages("corrplot")
-
-library(corrplot)
-
-corrplot(corvariables2, method ="circle")  
-
-#type="upper", order="hclust", tl.col="black", tl.srt=45, is.corr = FALSE)
-
-
-
-
-
-str(corvariables2)
-
-str(data11_15$movie_facebook_likes)
-
-str(data11_15$gross)
-
-str(data11_15$budget)
-
-str(data11_15$return)
-
-str(data11_15$imdb_score)
-
-
-
-corrmatrix <- rcorr(data11_15$return, data11_15$movie_facebook_likes, data11_15$imdb_score, data11_15$gross, data11_15$budget)
-
-corrmatrix
-
-
-
-
-
-retfb <- cor.test(x = data11_15$return, y=data11_15$movie_facebook_likes)
-
-retimdb <- cor.test(x = data11_15$return, y=data11_15$imdb_score)
-
-retrev <- cor.test(x = data11_15$return, y=data11_15$gross)
-
-retbud <- cor.test(x = data11_15$return, y=data11_15$budget)
-
-
-
-fbimdb <- cor.test(x = data11_15$movie_facebook_likes, y=data11_15$imdb_score)
-
-fbbud <- cor.test(x = data11_15$movie_facebook_likes, y=data11_15$budget)
-
-fbrev <- cor.test(x = data11_15$movie_facebook_likes, y=data11_15$gross)
-
-
-
-imdbrev <- cor.test(x = data11_15$imdb_score, y=data11_15$gross)
-
-imdbbud <- cor.test(x = data11_15$imdb_score, y=data11_15$budget)
-
-
-
-revbud <- cor.test(x = data11_15$gross, y=data11_15$budget)
 
 
 
