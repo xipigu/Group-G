@@ -149,8 +149,6 @@ ggplot(RB_data, aes(x=imdb_score, y=gross ))+ ##gross and return vs IMDB_SCORE--
   
   geom_smooth()
 
-b_v_g <- cor(RB_data$budget,RB_data$gross)
-print(b_v_g)
 
 ggplot(RB_data, aes(x=budget, y=gross ))+ ##gross and return vs IMDB_SCORE-------anomoly is justin bieber, weak positive correlation
   
@@ -324,6 +322,10 @@ plot(x= data11_15$return, y=data11_15$movie_facebook_likes)
 plot(x= data11_15$gross, y=data11_15$imdb_score)
 
 plot(x= data11_15$return, y=data11_15$movie_facebook_likes)
+
+m1 <- lm(gross~budget+imdb_score+movie_facebook_likes+num_voted_users+num_user_for_reviews,data11_15)
+summary(m1)#budget, num_voted_users and so on are determinants, exclude facebook likes
+
 
 
 
