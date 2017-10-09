@@ -316,9 +316,6 @@ plot(x= data11_15$gross, y=data11_15$movie_facebook_likes)
 plot(x= data11_15$return, y=data11_15$movie_facebook_likes)
 
 
-
-
-
 plot(x= data11_15$gross, y=data11_15$imdb_score)
 
 plot(x= data11_15$return, y=data11_15$movie_facebook_likes)
