@@ -1,45 +1,68 @@
-##Initial cleaning
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8e236e847abae7bcd1a7301363ed878c24c37960
+##Initial cleaning
 library(dplyr)
 library(readr)
 library(tidyr)
 library(magrittr)
 library(stringr)
+library(tidyr)
 
+<<<<<<< HEAD
 old_data <- read.csv("./Drafts/movie_metadata.csv", stringsAsFactors = FALSE)
-head(old_data)
 filter_data <- filter(old_data, country=="USA", language=="English")
-#head(filter_data)
 select_data <- select(filter_data, movie_title, title_year, director_name, duration, gross, genres, num_voted_users, num_user_for_reviews, budget, imdb_score, movie_facebook_likes, actor_1_name, actor_2_name, actor_3_name)
-#head(select_data)
 select_data_filter <- filter(select_data, title_year >= 2011, gross !=0, gross != "NA", gross != "", imdb_score != 0, imdb_score != "NA", imdb_score != "", budget != 0, budget != "NA", budget != "", movie_facebook_likes != 0, movie_facebook_likes != "NA", movie_facebook_likes != "")
 
-#head(select_data_filter)
+head(select_data_filter)
 
 ##Genre conversion
 
 typeof(select_data_filter$genres)
 toString(select_data_filter$genres)
 str(select_data_filter)
+=======
+old_data <- read.csv("./Drafts/movie_metadata.csv", stringsAsFactors = FALSE, encoding="UTF-8")
+#head(old_data)
+filter_data <- filter(old_data, country=="USA", language=="English")
+#head(filter_data)
+select_data <- select(filter_data, movie_title, title_year, director_name, duration, gross, genres, num_voted_users, num_user_for_reviews, budget, imdb_score, movie_facebook_likes, actor_1_name, actor_2_name, actor_3_name)
+#head(select_data)
+select_data_filter <- filter(select_data, title_year >= 2011, gross !=0, gross != "NA", gross != "", imdb_score != 0, imdb_score != "NA", imdb_score != "", budget != 0, budget != "NA", budget != "", movie_facebook_likes != 0, movie_facebook_likes != "NA", movie_facebook_likes != "")
+#head(select_data_filter)
+
+###Genre conversion
+#typeof(select_data_filter$genres)
+#toString(select_data_filter$genres)
+#str(select_data_filter)
+>>>>>>> 8e236e847abae7bcd1a7301363ed878c24c37960
 genre_names <- c("Action","Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "History", "Horror", "Musical", "Mystery", "News", "Romance", "Sci-Fi", "Sport", "Thriller", "War", "Western")
 genre_types <- c("genre1", "genre2","genre3", "genre4", "genre5", "genre6", "genre7")
-
 genre_filter <- select_data_filter %>% separate(genres, into=genre_types,sep = "\\|")
-#head(genre_filter)
+<<<<<<< HEAD
+head(genre_filter)
 
 
 ##Establishing a Gross Revenue / Budget variable and cleaning up movie titles
+=======
+#head(genre_filter)
+>>>>>>> 8e236e847abae7bcd1a7301363ed878c24c37960
 
+##Establishing a Gross Revenue / Budget variable and cleaning up movie title names
 RB_data <- mutate(.data = genre_filter, return = gross / budget)
 RB_data$return <- round(RB_data$return, 2)
-head(RB_data)
-RB_data$movie_title <- gsub("Â","",RB_data$movie_title)
-RB_data$movie_title = substr(RB_data$movie_title,1,nchar(RB_data$movie_title)-1)
-head(RB_data)
+#head(RB_data)
 
+##Clean RB_data of duplicates and the additional character in name
+RB_data$movie_title = substr(RB_data$movie_title,1,nchar(RB_data$movie_title)-1)
+RB_data <- RB_data[-c(as.vector(which(duplicated(RB_data) == TRUE))),]
+
+#head(RB_data)
 
 ##Introducing flags for genres
-length(RB_data$movie_title)
+
 RB_data$actiondummy <- as.numeric( RB_data$genre1 == "Action" | RB_data$genre2 == "Action" | RB_data$genre3 == "Action" | RB_data$genre4 == "Action" | RB_data$genre5 == "Action" | RB_data$genre6 == "Action" | RB_data$genre7 == "Action")
 RB_data$actiondummy[is.na(RB_data$actiondummy)] <- 0
 
@@ -103,42 +126,31 @@ RB_data$wardummy[is.na(RB_data$wardummy)] <- 0
 RB_data$westerndummy <- as.numeric( RB_data$genre1 == "Western" | RB_data$genre2 == "Western" | RB_data$genre3 == "Western" | RB_data$genre4 == "Western" | RB_data$genre5 == "Western" | RB_data$genre6 == "Western" | RB_data$genre7 == "Western")
 RB_data$westerndummy[is.na(RB_data$westerndummy)] <- 0
 
-sum(RB_data$actiondummy)
-
+#sum(RB_data$actiondummy)
 
 ##To search for items within the Movie Title column
+<<<<<<< HEAD
 row <- grep(RB_data$movie_title,"The Dark Knight ")
 as.character(RB_data$movie_title[1]) == as.character("The Dark Knight Rises ")
 head(RB_data)
 typeof(RB_data$genre1)
 typeof(RB_data$movie_title)
-RB_data$movie_title[1] == as.character("The Dark Knight Rises ")
+RB_data$movie_title[1] == as.character("The Dark Knight Rises")
 
+=======
+#row <- grep(RB_data$movie_title,"The Dark Knight ")
+#as.character(RB_data$movie_title[1]) == as.character("The Dark Knight Rises ")
+#head(RB_data)
+#typeof(RB_data$genre1)
+#typeof(RB_data$movie_title)
+#RB_data$movie_title[1] == as.character("The Dark Knight Rises ")
+>>>>>>> 8e236e847abae7bcd1a7301363ed878c24c37960
 
 #to search for a string in any column
 str_detect(RB_data$movie_title,"John Carter")
 
-for (i in (1:length(RB_data))){
-  RB_data$director_occurence[i] = length(which((str_detect(RB_data$director_name,RB_data$director_name[i]))==TRUE))
-  RB_data$actor1_occurence[i] = length(which((str_detect(cbind(RB_data$actor_1_name,RB_data$actor_2_nameRB_data$actor_3_name),RB_data$actor_1_name[i]))==TRUE))
-  RB_data$actor2_occurence[i] = length(which((str_detect(cbind(RB_data$actor_1_name,RB_data$actor_2_nameRB_data$actor_3_name),RB_data$actor_2_name[i]))==TRUE))
-  RB_data$actor3_occurence[i] = length(which((str_detect(cbind(RB_data$actor_1_name,RB_data$actor_2_nameRB_data$actor_3_name),RB_data$actor_3_name[i]))==TRUE))
-}
-
-##Establishing separate datasets for time periods
-
-
-data11_15 <- filter(.data = RB_data, title_year < 2016)
-#head(data11_15)
-data16 <- filter(.data = RB_data,title_year == 2016)
-#head(data16)
-#print(data11_15$movie_facebook_likes)
-print(data11_15$movie_facebook_likes)
-
-
 ##cleaning awards data 
-
-awards_data <- read.csv("./Drafts/awards_metadata.csv", stringsAsFactors = FALSE)
+awards_data <- read.csv("./Drafts/awards_metadata.csv", stringsAsFactors = FALSE, encoding = "UTF-8")
 awards_data <- filter(awards_data, Winner!="NA")
 awards_data <- select(awards_data, Year, Award, Name, Film)
 movie_wins <- filter(awards_data, Award=="Best Picture" | Award=="Best Motion Picture")
@@ -149,3 +161,41 @@ director_wins <- filter(awards_data, Award=="Directing")
 director_wins$Name = director_wins$Film
 director_wins <- count(director_wins, Name)
 award_wins <- rbind(actor_wins,director_wins,movie_wins)
+<<<<<<< HEAD
+head(data11_15)
+=======
+
+##Getting the occurences of directors/actors in the database
+for (i in (1:length(RB_data))){
+  RB_data$director_occurence[i] = length(which((str_detect(RB_data$director_name, RB_data$director_name[i])) == TRUE))
+  RB_data$actor1_occurence[i] = length(which((str_detect(cbind(RB_data$actor_1_name, RB_data$actor_2_name, RB_data$actor_3_name), RB_data$actor_1_name[i])) == TRUE))
+  RB_data$actor2_occurence[i] = length(which((str_detect(cbind(RB_data$actor_1_name, RB_data$actor_2_name, RB_data$actor_3_name), RB_data$actor_2_name[i])) == TRUE))
+  RB_data$actor3_occurence[i] = length(which((str_detect(cbind(RB_data$actor_1_name, RB_data$actor_2_name, RB_data$actor_3_name), RB_data$actor_3_name[i])) == TRUE))
+}
+
+#FOR GETTING AWARDS DATA
+occurences = table(unlist(award_wins$Name))
+occurences = as.data.frame(occurences)
+RB_data = left_join(x=RB_data, y=occurences, by=c(director_name = "Var1"))
+colnames(RB_data)[47] <- "dir_oscars"
+RB_data = left_join(x=RB_data, y=occurences, by=c(actor_1_name = "Var1"))
+colnames(RB_data)[48] <- "act1_oscars"
+RB_data = left_join(x=RB_data, y=occurences, by=c(actor_2_name = "Var1"))
+colnames(RB_data)[49] <- "act2_oscars"
+RB_data = left_join(x=RB_data, y=occurences, by=c(actor_3_name = "Var1"))
+colnames(RB_data)[50] <- "act3_oscars"
+RB_data = left_join(x=RB_data, y=occurences, by=c(director_name = "Var1"))
+colnames(RB_data)[51] <- "movie_oscars"
+RB_data[c("dir_oscars","act1_oscars","act2_oscars","act3_oscars","movie_oscars")][is.na(RB_data[c("dir_oscars","act1_oscars","act2_oscars","act3_oscars","movie_oscars")])] <- 0
+RB_data$actor_oscars = RB_data$act1_oscars + RB_data$act2_oscars + RB_data$act3_oscars
+RB_data = RB_data[ , !(names(RB_data) %in% c("act1_oscars","act2_oscars","act3_oscars","genre1","genre2","genre3","genre4","genre5","genre6","genre7"))]
+
+
+##Establishing separate datasets for time periods
+data11_15 <- filter(.data = RB_data, title_year < 2016)
+#head(data11_15)
+data16 <- filter(.data = RB_data,title_year == 2016)
+#head(data16)
+#print(data11_15$movie_facebook_likes)
+#print(data11_15$movie_facebook_likes)
+>>>>>>> 8e236e847abae7bcd1a7301363ed878c24c37960
