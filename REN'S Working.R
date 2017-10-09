@@ -396,15 +396,3 @@ summary(m1)#budget, num_voted_users and so on are determinants, exclude facebook
 
 
 
-
-
-
-
-
-
-
-
-
->>>>>>> 4723d910e6779baf6a9ee0cba1689476074b5f5f
-
-
