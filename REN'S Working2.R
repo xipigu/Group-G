@@ -49,54 +49,11 @@ corvariables1 <- data.frame(ret=data11_15$return,
                             imdb=data11_15$imdb_score,
                             rev=data11_15$gross,
                             bud=data11_15$budget)
-corvariables3 <- as.matrix(as.data.frame(corvariables2))
+corvariables3 <- as.matrix(as.data.frame(corvariables1))
 head(corvariables3)
 cor(corvariables3)
 cor(corvariables3$P)
 
-install.packages("corrplot")
-library(corrplot)
-corrplot(corvariables2, method ="circle")  
-#type="upper", order="hclust", tl.col="black", tl.srt=45, is.corr = FALSE)
-
-
-str(corvariables2)
-str(data11_15$movie_facebook_likes)
-str(data11_15$gross)
-str(data11_15$budget)
-str(data11_15$return)
-str(data11_15$imdb_score)
-
-corrmatrix <- rcorr(data11_15$return, data11_15$movie_facebook_likes, data11_15$imdb_score, data11_15$gross, data11_15$budget)
-corrmatrix
-
-
-retfb <- cor.test(x = data11_15$return, y=data11_15$movie_facebook_likes)
-retimdb <- cor.test(x = data11_15$return, y=data11_15$imdb_score)
-retrev <- cor.test(x = data11_15$return, y=data11_15$gross)
-retbud <- cor.test(x = data11_15$return, y=data11_15$budget)
-
-fbimdb <- cor.test(x = data11_15$movie_facebook_likes, y=data11_15$imdb_score)
-fbbud <- cor.test(x = data11_15$movie_facebook_likes, y=data11_15$budget)
-fbrev <- cor.test(x = data11_15$movie_facebook_likes, y=data11_15$gross)
-
-imdbrev <- cor.test(x = data11_15$imdb_score, y=data11_15$gross)
-imdbbud <- cor.test(x = data11_15$imdb_score, y=data11_15$budget)
-
-revbud <- cor.test(x = data11_15$gross, y=data11_15$budget)
-
-fbrev
-imdbrev
-plot(x= data11_15$gross, y=data11_15$movie_facebook_likes)
-plot(x= data11_15$return, y=data11_15$movie_facebook_likes)
-
-
-plot(x= data11_15$gross, y=data11_15$imdb_score)
-plot(x= data11_15$return, y=data11_15$movie_facebook_likes)
-
-
-
-
-
-
+#IMDB vs Revenue
+ggplot(data11_15,aes=(x=movie_facebook_likes,y=imdb_score))+geom_point()
 
